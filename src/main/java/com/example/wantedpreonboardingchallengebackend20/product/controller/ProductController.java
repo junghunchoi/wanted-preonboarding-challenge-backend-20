@@ -48,24 +48,5 @@ public class ProductController {
 		return ResponseEntity.ok(ResultDTO.res(HttpStatus.OK, HttpStatus.OK.toString(), productDTO));
 	}
 
-	@PostMapping("/purchase")
-	public ResponseEntity<ResultDTO<Object>> purchase(ProductDTO productDTO) {
-		productService.purchase(productDTO);
 
-		return ResponseEntity.ok(ResultDTO.res(HttpStatus.OK, HttpStatus.OK.toString(), productDTO));
-	}
-
-	@GetMapping("/purchaselist")
-	public ResponseEntity<ResultDTO<Object>> purchaseList() {
-		List<Object> productList = productService.purchaseList(1L);
-
-		return ResponseEntity.ok(ResultDTO.res(HttpStatus.OK, "상품 리스트 반환 성공", productList));
-	}
-
-	@GetMapping("/reservelist")
-	public ResponseEntity<ResultDTO<Object>> reserveList() {
-		List<Object> productList = productService.reserveList(1L);
-
-		return ResponseEntity.ok(ResultDTO.res(HttpStatus.OK, "상품 리스트 반환 성공", productList));
-	}
 }

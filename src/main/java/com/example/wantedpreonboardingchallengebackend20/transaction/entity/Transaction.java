@@ -1,10 +1,13 @@
 package com.example.wantedpreonboardingchallengebackend20.transaction.entity;
 
 
+import com.example.wantedpreonboardingchallengebackend20.product.entity.Product;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,7 +26,9 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	Long product_id;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
 
 	Long buyer_id;
 
