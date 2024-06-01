@@ -1,0 +1,105 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+
+springBoot {
+    mainClass = 'com.backend.BackendApplication'
+}
+
+java {
+    sourceCompatibility = '14'
+    targetCompatibility = '14'
+}
+
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-core:${queryDslVersion}"
+    implementation 'org.modelmapper:modelmapper:3.1.0'
+
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+    implementation 'net.coobird:thumbnailator:0.4.16'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+    annotationProcessor(
+            "javax.persistence:javax.persistence-api",
+            "javax.annotation:javax.annotation-api"
+    )
+}
+
+def querydslDir = "$buildDir/generated/querydsl"
+// JPA 사용 여부와 사용할 경로를 설정
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+// build 시 사용할 sourceSet 추가
+sourceSets {
+    main.java.srcDir querydslDir
+}
+// querydsl 컴파일시 사용할 옵션 설정
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
+}
+// querydsl 이 compileClassPath 를 상속하도록 설정
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
