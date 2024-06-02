@@ -2,7 +2,10 @@ package com.example.wantedpreonboardingchallengebackend20.transaction.entity;
 
 
 import com.example.wantedpreonboardingchallengebackend20.product.entity.Product;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,16 +29,20 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinColumn(name = "product_id")
 	private Product product;
 
-	Long buyer_id;
+	@Column(name = "buyer_id")
+	private Long buyer_id;
 
-	Long seller;
+	@Column(name = "seller")
+	private Long seller;
 
-	int price;
+	@Column(name = "price")
+	private int price;
 
-	String status;
+	@Column(name = "status", nullable = false)
+	private String status;
 
 }

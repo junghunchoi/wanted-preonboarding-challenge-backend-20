@@ -38,7 +38,6 @@ public class ProductServiceImpl implements ProductService {
 		                         .build();
 		Long id = productRepository.save(product).getId();
 
-		log.info(id);
 		return id;
 	}
 

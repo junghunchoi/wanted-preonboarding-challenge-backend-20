@@ -30,8 +30,6 @@ public class QTransaction extends EntityPathBase<Transaction> {
 
     public final com.example.wantedpreonboardingchallengebackend20.product.entity.QProduct product;
 
-    public final NumberPath<Long> product_id = createNumber("product_id", Long.class);
-
     public final NumberPath<Long> seller = createNumber("seller", Long.class);
 
     public final StringPath status = createString("status");

@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.example.wantedpreonboardingchallengebackend20.product.dto.ProductDTO;
 import com.example.wantedpreonboardingchallengebackend20.product.entity.Product;
+import com.example.wantedpreonboardingchallengebackend20.product.repository.ProductRepository;
 import com.example.wantedpreonboardingchallengebackend20.transaction.dto.TransactionDTO;
 import com.example.wantedpreonboardingchallengebackend20.transaction.entity.Transaction;
+import com.example.wantedpreonboardingchallengebackend20.transaction.repository.TransactionRepository;
 import com.example.wantedpreonboardingchallengebackend20.transaction.service.TransactionService;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -18,6 +20,13 @@ class TransactionControllerTest {
 
 	@Autowired
 	private TransactionService transactionService;
+
+	@Autowired
+	private TransactionRepository transactionRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
+
 
 	@Test
 	void purchase() {

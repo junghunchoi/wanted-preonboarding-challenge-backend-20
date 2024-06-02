@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,18 +32,20 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(name = "seller_id")
 	private Long seller_id;
 
+	@Column(name = "name")
 	private String name;
 
+	@Column(name = "price")
 	private int price;
 
+	@Column(name = "amount")
 	private int amount;
 
+	@Column(name = "status")
 	private String status;
 
-	private LocalDateTime regDate;
 
-	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Transaction> transactions = new ArrayList<>();
 }

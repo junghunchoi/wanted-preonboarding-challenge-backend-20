@@ -1,5 +1,5 @@
 package com.example.wantedpreonboardingchallengebackend20.Exception;
 
-public class MemberException {
+public class MemberException extends RuntimeException {
 
 }

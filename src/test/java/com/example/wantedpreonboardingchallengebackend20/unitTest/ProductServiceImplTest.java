@@ -26,6 +26,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -44,10 +45,10 @@ class ProductServiceImplTest {
 	private JPAQueryFactory queryFactory;
 
 	@Mock
-	private ProductRepository productRepository;
+	private TransactionRepository transactionRepository;
 
 	@Mock
-	private TransactionRepository transactionRepository;
+	private ProductRepository productRepository;
 
 	@Spy
 	private ModelMapper modelMapper;
@@ -60,7 +61,7 @@ class ProductServiceImplTest {
 	void testRegister() {
 		// given
 		ProductDTO productDTO = ProductDTO.builder()
-		                                  .seller_id(1L)
+		                                  .seller_id(2L)
 		                                  .name("Test Product")
 		                                  .price(1000)
 		                                  .amount(10)
@@ -86,25 +87,7 @@ class ProductServiceImplTest {
 		assertEquals(savedProduct.getId(), id);
 	}
 
-//	@Test
-//	void testList() {
-//		// given
-//		List<Object[]> results = new ArrayList<>();
-//		results.add(new Object[]{"Product 1", 1000, 10});
-//		results.add(new Object[]{"Product 2", 2000, 20});
-//
-//		when(queryFactory.select(any(), any(), any())
-//		                 .from(any())
-//		                 .orderBy(any())
-//		                 .fetch()).thenReturn(results);
-//
-//		// when
-//		List<Object> products = productService.list();
-//
-//		// then
-//		assertEquals(2, products.size());
-//	}
-//
+
 @Test
 void testReadOne() {
 	// given
