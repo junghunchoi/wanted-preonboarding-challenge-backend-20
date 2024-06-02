@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -31,8 +30,6 @@ public class QProduct extends EntityPathBase<Product> {
     public final NumberPath<Long> seller_id = createNumber("seller_id", Long.class);
 
     public final StringPath status = createString("status");
-
-    public final ListPath<com.example.wantedpreonboardingchallengebackend20.transaction.entity.Transaction, com.example.wantedpreonboardingchallengebackend20.transaction.entity.QTransaction> transactions = this.<com.example.wantedpreonboardingchallengebackend20.transaction.entity.Transaction, com.example.wantedpreonboardingchallengebackend20.transaction.entity.QTransaction>createList("transactions", com.example.wantedpreonboardingchallengebackend20.transaction.entity.Transaction.class, com.example.wantedpreonboardingchallengebackend20.transaction.entity.QTransaction.class, PathInits.DIRECT2);
 
     public QProduct(String variable) {
         super(Product.class, forVariable(variable));
